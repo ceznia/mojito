@@ -112,3 +112,7 @@ p {
   border-radius: 12px;
   font-size: 1em;
 }
+
+.button:hover {
+  background-color: #A8B97A;
+}
