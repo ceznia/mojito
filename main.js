@@ -30,3 +30,24 @@ fetch("https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=11000")
     // Handle any errors that occur during the fetch request
     console.error("Error:", error);
   });
+
+document.addEventListener("DOMContentLoaded", function () {
+  const mixBtn = document.getElementById("mix-btn");
+  const drinkBtn = document.getElementById("drink-btn");
+  const ingredientsGrid = document.getElementById("ingredients-grid");
+  const instructions = document.getElementById("instructions");
+
+  mixBtn.addEventListener("click", function () {
+    ingredientsGrid.style.display = "none";
+    mixBtn.style.display = "none";
+    instructions.style.display = "block";
+  });
+
+  drinkBtn.addEventListener("click", function () {
+    alert("Cheers! 🍹");
+    // Optionally, you can reset the view here
+    // ingredientsGrid.style.display = 'grid';
+    // mixBtn.style.display = 'inline-block';
+    // instructions.style.display = 'none';
+  });
+});

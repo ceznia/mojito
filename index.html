@@ -24,7 +24,7 @@
     </h1>
     <p>A contemporary classic</p>
 
-    <div class="ingredients-grid">
+    <div class="ingredients-grid" id="ingredients-grid">
       <!-- list of ingredients -->
        <div class="ingredient-item">
         <img src="https://www.thecocktaildb.com/images/ingredients/light%20rum.png" alt="White Rum" width="72" height="72">
@@ -38,7 +38,6 @@
         <img src="https://www.thecocktaildb.com/images/ingredients/Sugar.png" alt="Sugar" width="72" height="72">
         <p>2 tsp Sugar</p>
       </div>
-    
       <div class="ingredient-item">
         <img src="https://www.thecocktaildb.com/images/ingredients/Mint.png" alt="Mint" width="72" height="72">
         <p>2-4 Mint</p>
@@ -53,7 +52,20 @@
       </div>
     </div>
 
-    <button class="button">Mix Cocktail</button>
+    <div class="instructions" id="instructions" style="display:none;">
+      <h2>Instructions</h2>
+      <ol>
+        <li>Muddle mint leaves with sugar and lime juice.</li>
+        <li>Add a splash of soda water and fill the glass with cracked ice.</li>
+        <li>Pour the rum and top with soda water.</li>
+        <li>Garnish and serve with straw.</li>
+      </ol>
+      <div class="instructions-btn-wrap">
+        <button class="button" id="drink-btn">Drink Cocktail</button>
+      </div>
+    </div>
+
+    <button class="button" id="mix-btn">Mix Cocktail</button>
     
   </div>
 </body>
