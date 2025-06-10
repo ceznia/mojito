@@ -4,7 +4,7 @@ console.log("...fetching a random cocktail 🍹");
 const titleContainer = document.querySelector("[data-js='title']");
 const imgContainer = document.querySelector("[data-js='photo']");
 
-fetch("https://www.thecocktaildb.com/api/json/v1/1/random.php")
+fetch("https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=11000")
   .then((response) => response.json())
   .then((data) => {
     // Process the fetched data here
