@@ -3,6 +3,7 @@ console.log("...fetching a random cocktail 🍹");
 // prepare dom elements
 const titleContainer = document.querySelector("[data-js='title']");
 const imgContainer = document.querySelector("[data-js='photo']");
+const ingredientsGrid = document.getElementById("ingredients-grid");
 
 fetch("https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=11000")
   .then((response) => response.json())
@@ -25,6 +26,46 @@ fetch("https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=11000")
     img.src = drink.strDrinkThumb;
     img.alt = drink.strDrink;
     imgContainer.appendChild(img);
+
+    // Clear grid and add ingredients
+    ingredientsGrid.innerHTML = "";
+    for (let i = 1; i <= 15; i++) {
+      const ingredient = drink[`strIngredient${i}`];
+      const measure = drink[`strMeasure${i}`];
+      if (ingredient) {
+        const imgUrl = `https://www.thecocktaildb.com/images/ingredients/${encodeURIComponent(
+          ingredient
+        )}.png`;
+        const itemDiv = document.createElement("div");
+        itemDiv.className = "ingredient-item";
+        const imgElem = document.createElement("img");
+        imgElem.src = imgUrl;
+        imgElem.alt = ingredient;
+        imgElem.width = 72;
+        imgElem.height = 72;
+        const pElem = document.createElement("p");
+        pElem.textContent = (measure ? measure.trim() + " " : "") + ingredient;
+        itemDiv.appendChild(imgElem);
+        itemDiv.appendChild(pElem);
+        ingredientsGrid.appendChild(itemDiv);
+      }
+    }
+
+    // Add extra ingredient: Crushed Ice
+    const extraIngredient = "Crushed Ice";
+    const extraImgUrl = "https://www.thecocktaildb.com/images/ingredients/ice.png";
+    const extraDiv = document.createElement("div");
+    extraDiv.className = "ingredient-item";
+    const extraImg = document.createElement("img");
+    extraImg.src = extraImgUrl;
+    extraImg.alt = extraIngredient;
+    extraImg.width = 72;
+    extraImg.height = 72;
+    const extraP = document.createElement("p");
+    extraP.textContent = extraIngredient;
+    extraDiv.appendChild(extraImg);
+    extraDiv.appendChild(extraP);
+    ingredientsGrid.appendChild(extraDiv);
   })
   .catch((error) => {
     // Handle any errors that occur during the fetch request
