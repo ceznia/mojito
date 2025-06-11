@@ -162,3 +162,7 @@ li {
 .back-btn:hover {
   color: #A8B97A;
 }
+
+#main-content {
+  transition: filter 0.3s;
+}

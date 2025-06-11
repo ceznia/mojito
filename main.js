@@ -85,12 +85,16 @@ fetch("https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=11000")
     console.error("Error:", error);
   });
 
+let blurLevel = 0;
+const maxBlur = 9; // You can adjust this for "double vision" effect
+
 document.addEventListener("DOMContentLoaded", function () {
   const mixBtn = document.getElementById("mix-btn");
   const drinkBtn = document.getElementById("drink-btn");
   const ingredientsGrid = document.getElementById("ingredients-grid");
   const instructionsDiv = document.getElementById("instructions");
   const backBtn = document.getElementById("back-btn");
+  const mainContent = document.getElementById("main-content");
 
   mixBtn.addEventListener("click", function () {
     ingredientsGrid.style.display = "none";
@@ -99,11 +103,21 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   drinkBtn.addEventListener("click", function () {
-    alert("Cheers! 🍹");
-    // Optionally reset view:
-    // ingredientsGrid.style.display = "grid";
-    // mixBtn.style.display = "inline-block";
-    // instructionsDiv.style.display = "none";
+    if (blurLevel >= maxBlur) {
+      const sober = confirm("You seem drunk. You might want to stop drinking.");
+      if (sober) {
+        // Reset everything
+        blurLevel = 0;
+        mainContent.style.filter = "none";
+        instructionsDiv.style.display = "none";
+        ingredientsGrid.style.display = "grid";
+        mixBtn.style.display = "inline-block";
+      }
+      return;
+    }
+    blurLevel += 3; // increase blur level
+    if (blurLevel > maxBlur) blurLevel = maxBlur;
+    mainContent.style.filter = `blur(${blurLevel}px)`;
   });
 
   backBtn.addEventListener("click", function () {
