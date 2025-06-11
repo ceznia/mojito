@@ -4,6 +4,7 @@ console.log("...fetching a random cocktail 🍹");
 const titleContainer = document.querySelector("[data-js='title']");
 const imgContainer = document.querySelector("[data-js='photo']");
 const ingredientsGrid = document.getElementById("ingredients-grid");
+const instructionsList = document.getElementById("instructions-list");
 
 fetch("https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=11000")
   .then((response) => response.json())
@@ -20,7 +21,6 @@ fetch("https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=11000")
     titleContainer.innerHTML = drink.strDrink;
 
     // display drink image to the screen
-
     // first create an img tag on the fly
     const img = document.createElement("img");
     img.src = drink.strDrinkThumb;
@@ -66,6 +66,19 @@ fetch("https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=11000")
     extraDiv.appendChild(extraImg);
     extraDiv.appendChild(extraP);
     ingredientsGrid.appendChild(extraDiv);
+
+    // Clear and add instructions dynamically
+    instructionsList.innerHTML = "";
+    // Split instructions into steps by period, filter out empty steps
+    drink.strInstructions
+      .split(".")
+      .map((s) => s.trim())
+      .filter(Boolean)
+      .forEach((step) => {
+        const li = document.createElement("li");
+        li.textContent = step + (step.endsWith(".") ? "" : ".");
+        instructionsList.appendChild(li);
+      });
   })
   .catch((error) => {
     // Handle any errors that occur during the fetch request
@@ -76,19 +89,19 @@ document.addEventListener("DOMContentLoaded", function () {
   const mixBtn = document.getElementById("mix-btn");
   const drinkBtn = document.getElementById("drink-btn");
   const ingredientsGrid = document.getElementById("ingredients-grid");
-  const instructions = document.getElementById("instructions");
+  const instructionsDiv = document.getElementById("instructions");
 
   mixBtn.addEventListener("click", function () {
     ingredientsGrid.style.display = "none";
     mixBtn.style.display = "none";
-    instructions.style.display = "block";
+    instructionsDiv.style.display = "block";
   });
 
   drinkBtn.addEventListener("click", function () {
     alert("Cheers! 🍹");
-    // Optionally, you can reset the view here
-    // ingredientsGrid.style.display = 'grid';
-    // mixBtn.style.display = 'inline-block';
-    // instructions.style.display = 'none';
+    // Optionally reset view:
+    // ingredientsGrid.style.display = "grid";
+    // mixBtn.style.display = "inline-block";
+    // instructionsDiv.style.display = "none";
   });
 });
