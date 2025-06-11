@@ -90,6 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const drinkBtn = document.getElementById("drink-btn");
   const ingredientsGrid = document.getElementById("ingredients-grid");
   const instructionsDiv = document.getElementById("instructions");
+  const backBtn = document.getElementById("back-btn");
 
   mixBtn.addEventListener("click", function () {
     ingredientsGrid.style.display = "none";
@@ -103,5 +104,11 @@ document.addEventListener("DOMContentLoaded", function () {
     // ingredientsGrid.style.display = "grid";
     // mixBtn.style.display = "inline-block";
     // instructionsDiv.style.display = "none";
+  });
+
+  backBtn.addEventListener("click", function () {
+    instructionsDiv.style.display = "none";
+    ingredientsGrid.style.display = "grid";
+    mixBtn.style.display = "inline-block";
   });
 });

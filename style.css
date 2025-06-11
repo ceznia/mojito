@@ -41,7 +41,7 @@ li {
 .card {
   position: relative;
   width: 580px;
-  height: 870px;
+  height: 880px;
   padding: 50px;
   background-color: #1D1003;
   color: white;
@@ -135,7 +135,30 @@ li {
   
 }
 
+.instructions ol {
+  list-style-position: inside;
+}
+
 .instructions-btn-wrap {
   text-align: center;
-  margin-top: 45px;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  color: #C0CF8E;
+  font-size: 1em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  margin-left: 0;
+  padding: 0;
+  font-family: inherit;
+  font-weight: bold;
+  transition: color 0.2s;
+}
+
+.back-btn:hover {
+  color: #A8B97A;
 }
