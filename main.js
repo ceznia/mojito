@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   drinkBtn.addEventListener("click", function () {
     if (blurLevel >= maxBlur) {
-      const sober = confirm("You seem drunk. You might want to stop drinking.");
+      const sober = confirm("You're drunk. Get sober!");
       if (sober) {
         // Reset everything
         blurLevel = 0;
